@@ -1,2 +1,2 @@
-# utp2017-2-photoshop
+# utp2017-7-photoshop
 Растровый графический редактор на JavaScript
