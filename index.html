@@ -2,49 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script|Lobster" rel="stylesheet">
     <title>Photoshopchick</title>
     <style>
         #header-container
         {
+            font-family: 'Bad Script', cursive;
             font-size: 50px;
         }
 
-        #content-container
-        {
+        #control-elements-container > div {
+            display: inline-flex;
+        }
+
+        #content-container {
             width: 100%;
             height: 100%;
+        }
+
+        .button {
+            width:300px;
+            height:50px;
+            background:#424242;
+            transition:all 0.25s ease;   /* Transition settings           */
+
+            display: flex;               /* Use Flexbox on P              */
+            align-items: center;         /* Center P                      */
+            justify-content: center;     /* Center P                      */
+            margin: 10px;
+            color: white;
+        }
+        .button:hover {
+            background: #FF5722;
         }
     </style>
 </head>
 <body>
-    <header id="header-container">Фотошопчик</header>
+    <center><header id="header-container">Фотошопчик</header></center>
 
     <div id="control-elements-container">
-        <div id="file-input-container">
+        <div id="file-input-container" class="button">
             <input type="file" id="file-input" />
+        </div>
+        <div id="image-width-container" class="button">
+            <label for="image-width">Width: </label>
+            <input type="range" id="image-width" value="100" max="1000" />
         </div>
     </div>
 
     <div id="content-container">
-
+        <canvas id="content"></canvas>
     </div>
 
-    <script src="js/load-image.all.min.js"></script>
-    <script>
-        document.getElementById('file-input').onchange = function (e) {
-            var loadingImage = loadImage(
-                e.target.files[0],
-                function (img) {
-                    document.getElementById("content-container").appendChild(img);
-                    document.getElementById("file-input-container").style.display = "none";
-                },
-                {maxWidth: 300, canvas: true}
-            );
-
-            if (!loadingImage) {
-                console.log("Error!!!")
-            }
-        };
-    </script>
+    <script src="js/on-click-handlers.js"></script>
 </body>
 </html>
